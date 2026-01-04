@@ -36,7 +36,7 @@ body{
 .wrapper{
     position: relative;
     width: 100%;
-    min-width: 360px;
+    min-width: 540px;
     max-width: 1340px;
     min-height: 850px;
     height: 95vh;
@@ -236,7 +236,7 @@ body{
 
 .title {
     text-align: center;
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.3rem, 3vw, 2rem);
     margin-bottom: 1rem;
 }
 
@@ -250,6 +250,7 @@ body{
     overflow-y: auto;
     overflow-x: hidden;
     padding-right: 0.5rem;
+    margin-bottom: 3rem;
 }
 
 
