@@ -36,10 +36,10 @@ body{
 .wrapper{
     position: relative;
     width: 100%;
-    min-width: 540px;
+    min-width: 360px;
     max-width: 1340px;
     min-height: 850px;
-    height: 90vh;
+    height: 95vh;
     padding: 2rem;
     perspective: 250rem;
     animation: show-animate 2s forwards;
@@ -241,9 +241,36 @@ body{
 }
 
 .workeduc-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
     border-left: var(--border);
     margin-top: 2rem;
+    max-height: 15rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 0.5rem;
 }
+
+
+/* Scrollbar styling for services */
+.workeduc-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.workeduc-box::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.workeduc-box::-webkit-scrollbar-thumb {
+    background: var(--main-color);
+    border-radius: 3px;
+}
+
+.workeduc-box::-webkit-scrollbar-thumb:hover {
+    background: #0089b8;
+}
+
 
 .workeduc-box .workeduc-content {
     position: relative;
@@ -388,7 +415,7 @@ body{
     flex-wrap: wrap;
     gap: 1.5rem;
     margin-top: 2rem;
-    max-height: 36rem;
+    max-height: 40rem;
     overflow-y: auto;
     overflow-x: hidden;
     padding-right: 0.2rem;
