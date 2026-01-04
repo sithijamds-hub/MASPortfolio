@@ -1,0 +1,872 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+}
+
+:root {
+    --bg-color: #151f28;
+    --main-color: #00abf0;
+    --text-color: #333;
+    --second-text-color: #555;
+    --white-color:#fff;
+    --cover-color:linear-gradient(45deg, #00abf0, #006e9a);
+    --pages-color:linear-gradient(90deg, #fff, #ddd);
+    --border: 0.125rem solid #00abf0;
+    --box-shadow: 0 0 0.8rem rgba(0,0,0,0.2);
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow: hidden;
+    font-family: "Nunito", sans-serif;
+    padding: 1rem;
+}
+
+.wrapper{
+    position: relative;
+    width: 100%;
+    max-width: 1320px;
+    height: 90vh;
+    max-height: 900px;
+    padding: 2rem;
+    perspective: 250rem;
+    animation: show-animate 2s forwards;
+}
+
+@keyframes show-animate {
+    0%,
+    30% {
+        opacity: 0;
+        transform: rotate(-20deg);
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+}
+
+.cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: #029bca;
+    box-shadow: var(--box-shadow);
+    border-top-left-radius: 0.6rem;
+    border-bottom-left-radius: 0.6rem;
+    transform-origin: right;
+}
+
+.cover.cover-left{
+    z-index: -1;
+}
+
+.cover.cover-right{
+    z-index: 100;
+    transition: transform 1s cubic-bezier(.645, .045, .355, 1);
+}
+
+.cover.cover-right.turn {
+    transform: rotateY(180deg);
+}
+
+.book {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    perspective: 250rem;
+}
+
+.book .book-page {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background: var(--pages-color);
+    box-shadow: 0 0 .6rem rgba(0,0,0,0.1);
+    display: flex;
+    padding: 2rem;
+}
+
+.book-page.page-left{
+    box-shadow: -.6rem .6rem .6rem rgba(0,0,0,0.1);
+}
+
+.profile-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.profile-page img{
+    max-width: 180px;
+    width: 100%;
+    border-radius: 50%;
+    border: 0.25rem solid var(--main-color);
+    margin-bottom: .8rem;
+}
+
+.profile-page h1 {
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    line-height: 1;
+    text-align: center;
+}
+
+.profile-page h3{
+    color: var(--main-color);
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    text-align: center;
+}
+
+.profile-page .social-media {
+    margin: .6rem .8rem;
+}
+
+.profile-page .social-media a{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: transparent;
+    border: var(--border);
+    border-radius: 50%;
+    font-size: 1.3rem;
+    color: var(--main-color);
+    margin: 0 .2rem;
+    transition: .5s;
+}
+
+.profile-page .social-media a:hover{
+    background-color: var(--main-color);
+    color: var(--white-color);
+}
+
+.profile-page p {
+    text-align: justify;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+}
+
+.profile-page .btn-box{
+    margin-top: 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 9.5rem;
+    height: 3rem;
+    background: var(--main-color);
+    border: var(--border);
+    border-radius: .3rem;
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    color: var(--white-color);
+    font-weight: 500;
+    margin: 0 0.5rem;
+    transition: .5s;
+}
+
+.btn-box .btn:nth-child(2){
+    background: transparent;
+    color: var(--main-color);
+}
+
+.btn-box .btn:nth-child(1):hover{
+    background: transparent;
+    color: var(--main-color);
+}
+
+.btn-box .btn:nth-child(2):hover{
+    background: var(--main-color);
+    color: var(--white-color);
+}
+
+/* right page */
+.book-page.page-right{
+    position: absolute;
+    right: 0;
+    transform-style: preserve-3d;
+    transform-origin: left;
+    transition: transform 1s cubic-bezier(.645, .045, .355, 1);
+}
+
+.book-page.page-right.turn{
+    transform: rotateY(-180deg);
+}
+
+.book-page .page-front,
+.book-page .page-back{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--pages-color);
+    padding: 1.5rem 2rem;
+}
+
+.book-page .page-front{
+    transform: rotateY(0deg) translateZ(1px);
+}
+
+.book-page .page-back{
+    transform: rotateY(180deg) translateZ(1px);
+}
+
+.title {
+    text-align: center;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 1rem;
+}
+
+.workeduc-box {
+    border-left: var(--border);
+    margin-top: 2rem;
+}
+
+.workeduc-box .workeduc-content {
+    position: relative;
+    padding-left: 1.6rem;
+    padding-bottom: 1.2rem;
+}
+
+.workeduc-box .workeduc-content::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -0.65rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    background: var(--main-color);
+}
+
+.workeduc-content .year {
+    color: var(--main-color);
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+}
+
+.workeduc-content h3{
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    margin: .3rem 0;
+}
+
+.workeduc-content p{
+    font-size: clamp(0.85rem, 2vw, 1.15rem);
+    text-align: justify;
+}
+
+.workeduc-content .year i {
+    margin-right: .4rem;
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+}
+
+.number-page{
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 600;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+}
+
+/* next button */
+.nextprev-btn{
+    position: absolute;
+    bottom: .9rem;
+    right: 1.5rem;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    font-size: 2rem;
+    color: var(--second-text-color);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s;
+}
+
+.nextprev-btn:hover{
+    color: var(--main-color);
+}
+
+.nextprev-btn.back{
+    left: 1.5rem;
+}
+
+/* my services */
+.services-box{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    max-height: 15rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 0.5rem;
+}
+
+/* Scrollbar styling for services */
+.services-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.services-box::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.services-box::-webkit-scrollbar-thumb {
+    background: var(--main-color);
+    border-radius: 3px;
+}
+
+.services-box::-webkit-scrollbar-thumb:hover {
+    background: #0089b8;
+}
+
+.services-box .services-content{
+    flex: 1 1 10rem;
+    border: var(--border);
+    border-radius: .5rem;
+    padding: .8rem .5rem 1.1rem;
+    text-align: center;
+    transition: .3s ease;
+}
+
+.services-box .services-content:hover{
+    box-shadow: var(--box-shadow);
+}
+
+.services-content i{
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    color: var(--main-color);
+}
+
+.services-content h3{
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+}
+
+.services-content p {
+    margin: .2rem 0 .8rem;
+    font-size: clamp(0.85rem, 1.8vw, 1rem);
+}
+
+.services-content .btn {
+    width: 8rem;
+    height: 2.5rem;
+}
+
+.services-content .btn:hover{
+    background-color: transparent;
+    color: var(--main-color);
+}
+
+/* skills box */
+.skills-box{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    max-height: 36rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 0.2rem;
+}
+
+/* Scrollbar styling for services */
+.skills-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.skills-box::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.skills-box::-webkit-scrollbar-thumb {
+    background: var(--main-color);
+    border-radius: 3px;
+}
+
+.skills-box::-webkit-scrollbar-thumb:hover {
+    background: #0089b8;
+}
+
+.skills-box .skills-content{
+    flex: 1 1 20rem;
+}
+
+.skills-content h3{
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    line-height: 1;
+    margin-bottom: .6rem;
+}
+
+.skills-content .content{
+    display: flex;
+    flex-wrap: wrap;
+    gap: .8rem;
+}
+
+.skills-content .content span{
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: clamp(4.5rem, 12vw, 6rem);
+    height: clamp(3.5rem, 10vw, 5rem);
+    border: var(--border);
+    border-radius: .3rem;
+    font-weight: 600;
+    font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+    transition: .3s ease;
+}
+
+.skills-content .content span:hover{
+    box-shadow: var(--box-shadow);
+}
+
+.skills-content .content span i{
+    color: var(--main-color);
+    font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+/* ========================================
+pportfolio 
+
+/* portfolio */
+.pportfolio-box{
+    margin-top: 2rem;
+}
+
+.pportfolio-box .img-box{
+    display: flex;
+    width: 100%;
+    height: 15rem;
+    border-radius: .5rem;
+    border: var(--border);
+    overflow: hidden;
+}
+
+.pportfolio-box .img-box img{
+    width: 100%;
+    object-fit: cover;
+    transition: .5s ease;
+}
+
+.pportfolio-box .img-box:hover img{
+    transform: scale(1.1);
+}
+
+
+/* portfolio */
+.portfolio-box{
+    margin-top: 2rem;
+    max-height: 43%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 0.2rem;
+}
+
+
+/* Scrollbar styling for portfolio box */
+.portfolio-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.portfolio-box::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.portfolio-box::-webkit-scrollbar-thumb {
+    background: var(--main-color);
+    border-radius: 3px;
+}
+
+.portfolio-box::-webkit-scrollbar-thumb:hover {
+    background: #0089b8; 
+}
+
+.portfolio-box .img-box{
+    display: flex;
+    width: 100%;
+    height: 15rem;
+    border-radius: .5rem;
+    border: var(--border);
+    overflow: hidden;
+}
+
+.portfolio-box .img-box img{
+    width: 100%;
+    object-fit: cover;
+    transition: .5s ease;
+}
+
+.portfolio-box .img-box:hover img{
+    transform: scale(1.1);
+}
+
+.portfolio-box .info-box{
+    margin: 1rem 0 1.5rem;
+    max-height: 80%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 0.2rem;
+}
+
+.portfolio-box .info-box .info-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.portfolio-box .info-box .info-title h3{
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+}
+
+.portfolio-box .info-box .info-title a{
+    display: flex;
+    align-items: center;
+    color: var(--main-color);
+    font-size: clamp(0.85rem, 2vw, 1rem);
+}
+
+.portfolio-box .info-box .info-title a i{
+    margin-left: .3rem;
+}
+
+.portfolio-box .info-box p:nth-of-type(1){
+    font-weight: 600;
+}
+
+.portfolio-box .info-box p{
+    text-align: justify;
+    font-size: clamp(0.85rem, 2vw, 1rem);
+}
+
+.portfolio-box .btn-box{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.portfolio-box .btn-box .btn{
+    margin: 1rem;
+
+}
+
+/* Contact Me! */
+.contact-box{
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.contact-box .field{
+    width: 100%;
+    background-color: transparent;
+    border: var(--border);
+    border-radius: .3rem;
+    padding: .8rem;
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+.contact-box .field::placeholder{
+    color: var(--text-color);
+}
+
+.contact-box textarea{
+    resize: none;
+    height: 15rem;
+}
+
+.contact-box .btn{
+    cursor: pointer;
+}
+
+.contact-box .btn:hover{
+    background-color: transparent;
+    color: var(--main-color);
+}
+
+.back-profile{
+    position: absolute;
+    bottom: 1.2rem;
+    right: 2rem;
+    width: 2rem;
+    height: 2rem;
+    background-color: transparent;
+    border: var(--border);
+    border-radius: .3rem;
+    font-size: 1.1rem;
+    color: var(--main-color);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s;
+}
+
+.back-profile:hover{
+    background: var(--main-color);
+    color: var(--white-color);
+}
+
+.back-profile p{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) scale(.5);
+    font-size: 1rem;
+    opacity: 0;
+    transition: .5s;
+    color: var(--main-color);
+}
+
+.back-profile:hover p{
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    top: -1.8rem;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+======================================== */
+
+/* Large tablets and small laptops */
+@media (max-width: 1024px) {
+    .wrapper{
+        max-width: 900px;
+        height: 85vh;
+        padding: 1.5rem;
+    }
+    
+    .book .book-page {
+        padding: 1.5rem;
+    }
+    
+    .book-page .page-front,
+    .book-page .page-back{
+        padding: 1.2rem 1.5rem;
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    body{
+        padding: 0.5rem;
+    }
+    
+    .wrapper{
+        max-width: 100%;
+        height: 80vh;
+        padding: 1rem;
+    }
+    
+    .book .book-page {
+        padding: 1rem;
+    }
+    
+    .book-page .page-front,
+    .book-page .page-back{
+        padding: 1rem 1.2rem;
+    }
+    
+    .profile-page img{
+        max-width: 140px;
+    }
+    
+    .btn {
+        width: 8rem;
+        height: 2.8rem;
+        margin: 0.25rem;
+    }
+    
+    .skills-content .content span{
+        width: 5rem;
+        height: 4rem;
+    }
+    
+    .portfolio-box .img-box{
+        height: 12rem;
+    }
+    
+    .contact-box textarea{
+        height: 12rem;
+    }
+}
+
+/* Mobile devices */
+@media (max-width: 480px) {
+    body{
+        overflow-x: hidden;
+    }
+    
+    .wrapper{
+        height: 75vh;
+        padding: 0.5rem;
+        perspective: 150rem;
+    }
+    
+    .book .book-page {
+        padding: 0.8rem;
+    }
+    
+    .book-page .page-front,
+    .book-page .page-back{
+        padding: 0.8rem 1rem;
+    }
+    
+    .profile-page img{
+        max-width: 120px;
+        margin-bottom: 0.5rem;
+    }
+
+    .pprofile-page img{
+        max-width: 120px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .profile-page .social-media a{
+        width: 2rem;
+        height: 2rem;
+        font-size: 1.1rem;
+    }
+    
+    .btn {
+        width: 7rem;
+        height: 2.5rem;
+        font-size: 0.85rem;
+    }
+    
+    /* Services box mobile responsive */
+    .services-box{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .services-box .services-content{
+        flex: none;
+        border: var(--border);
+        border-radius: .5rem;
+        padding: 1rem;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .services-content i{
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .services-content h3{
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .services-content p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin-bottom: 0.8rem;
+    }
+    
+    .services-content .btn {
+        width: 100%;
+        max-width: 8rem;
+        height: 2.3rem;
+        font-size: 0.8rem;
+    }
+    
+    .skills-content .content span{
+        width: 4.5rem;
+        height: 3.5rem;
+    }
+    
+    .portfolio-box .img-box{
+        height: 10rem;
+    }
+    
+    .contact-box textarea{
+        height: 10rem;
+    }
+    
+    .nextprev-btn{
+        width: 1.8rem;
+        height: 1.8rem;
+        font-size: 1.8rem;
+        bottom: 0.5rem;
+    }
+    
+    .nextprev-btn.back{
+        left: 1rem;
+    }
+    
+    .back-profile{
+        right: 1rem;
+        bottom: 0.8rem;
+    }
+    
+    .number-page{
+        bottom: 0.5rem;
+    }
+    
+    .workeduc-box {
+        margin-top: 1rem;
+    }
+    
+    .services-box,
+    .skills-box,
+    .portfolio-box{
+        margin-top: 1rem;
+    }
+}
+
+/* Very small mobile devices */
+@media (max-width: 360px) {
+    .wrapper{
+        height: 70vh;
+    }
+    
+    .profile-page img{
+        max-width: 100px;
+    }
+    
+    .pprofile-page img{
+        max-width: 100px;
+    }
+
+    .skills-content .content span{
+        width: 4rem;
+        height: 3rem;
+    }
+    
+    .btn {
+        width: 6.5rem;
+        height: 2.3rem;
+    }
+}
